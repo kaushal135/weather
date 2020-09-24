@@ -5,9 +5,11 @@
 
 .App-header {
   display: flex;
+  background-color: #9869d9;
 }
 
 .Footer {
   display: flex;
   justify-content: center;
+  color: white;
 }
