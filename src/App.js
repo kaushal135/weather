@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
+import Forecast from './Components/Forecast.js';
 import Logo from './Assets/Weather_App_Logo.png';
 import './App.css';
 
+const APIKey = process.env.REACT_APP_API_KEY;
 
 function App() {
   let [units, setUnits] = useState(() => 'metric');
@@ -10,7 +12,7 @@ function App() {
 
   const getData = (e) => {
     if(e.key === 'Enter'){
-      console.log("hello world");
+      console.log(APIKey);
     }
   }
 
@@ -36,7 +38,7 @@ function App() {
       </header>
 
       <main>
-
+        <Forecast></Forecast>
       </main>
       
       <footer className="Footer">

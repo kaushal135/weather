@@ -1,18 +1,15 @@
 import React from 'react';
-import Sunny from 'src\Assets\Icons\006-sun.png';
-
-function getIcon(desc){
-    return Sunny;
-}
 
 function Forecast(props){
     const desc = props.desc;
     const temp = props.temp;
+    const imgCode = '01d';
+    const imgUrl = `http://openweathermap.org/img/wn/${imgCode}@2x.png`
 
     return(
         <div className="Forecast">
             <div>
-                <img src={getIcon(desc)} alt=""/>
+                <img src={imgUrl} alt=""/>
                 <p>{temp}</p>
             </div>
             <p>{desc}</p>
