@@ -3,7 +3,7 @@ import Forecast from './Components/Forecast.js';
 import Logo from './Assets/Weather_App_Logo.png';
 import './App.css';
 
-const APIKEY = '4613a51056e1ac44144f469863026710';
+
 const start = 'https://api.openweathermap.org/data/2.5/';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
 
   const getWeatherData = (e) => {
     if(e.key === 'Enter'){
-      fetch(`${start}weather?q=${city}&units=${units}&appid=${APIKEY}`)
+      fetch(`${start}weather?q=${city}&units=${units}&appid=${process.env.REACT_APP_API_KEY}`)
       .then(res => res.json())
       .then(response => {
         setResult(response);
