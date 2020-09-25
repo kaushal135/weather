@@ -3,16 +3,22 @@ import Forecast from './Components/Forecast.js';
 import Logo from './Assets/Weather_App_Logo.png';
 import './App.css';
 
-const APIKey = process.env.REACT_APP_API_KEY;
+const APIKEY = '4613a51056e1ac44144f469863026710';
+const start = 'https://api.openweathermap.org/data/2.5/';
 
 function App() {
   let [units, setUnits] = useState(() => 'metric');
   let [city, setCity] = useState(() => '');
   let [result, setResult] = useState({});
 
-  const getData = (e) => {
+  const getWeatherData = (e) => {
     if(e.key === 'Enter'){
-      console.log(APIKey);
+      fetch(`${start}weather?q=${city}&units=${units}&appid=${APIKEY}`)
+      .then(res => res.json())
+      .then(response => {
+        setResult(response);
+        setCity('');
+      });
     }
   }
 
@@ -28,7 +34,7 @@ function App() {
             placeholder="Enter a city..."
             value={city}
             onChange={(e) => setCity(e.target.value)}  
-            onKeyPress={getData}
+            onKeyPress={getWeatherData}
             />
         </div>
         <div>
@@ -38,12 +44,8 @@ function App() {
       </header>
 
       <main>
-        <Forecast></Forecast>
+        <Forecast res={result} unit={(units === 'metric') ? 'C' : 'F'}></Forecast>
       </main>
-      
-      <footer className="Footer">
-          Icons from <a href="https://www.flaticon.com/" title="Freepik">Freepik</a> 
-      </footer>
     </div>
   );
 }
